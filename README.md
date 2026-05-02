@@ -60,11 +60,15 @@ saucedemo-tests/
 
 ## 🏃 Ejecución de Pruebas
 
-Para ejecutar todos los tests disponibles y generar un reporte HTML automático:
+### Ejecución básica y Generación de Reporte HTML
+
+Para ejecutar todos los tests disponibles y generar un reporte de pruebas interactivo en formato HTML, utiliza el siguiente comando:
 
 ```bash
-pytest -v --html=report.html tests/ui/
+pytest -v --html=report.html --self-contained-html tests/ui/
 ```
+
+> **Nota:** El flag `--self-contained-html` agrupa todo el diseño y las imágenes en un solo archivo `report.html`, ideal para enviarlo por correo o compartirlo.
 
 ### Opciones de ejecución
 
