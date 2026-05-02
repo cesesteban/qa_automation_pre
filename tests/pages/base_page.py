@@ -25,7 +25,15 @@ class BasePage:
     def click(self, locator):
         """Wait for an element to be clickable and then click it."""
         element = self.wait.until(EC.element_to_be_clickable(locator))
-        element.click()
+        try:
+            element.click()
+        except Exception:
+            self.driver.execute_script("arguments[0].click();", element)
+
+    def js_click(self, locator):
+        """Use JavaScript click for elements that silently swallow standard clicks in Saucedemo."""
+        element = self.wait.until(EC.element_to_be_clickable(locator))
+        self.driver.execute_script("arguments[0].click();", element)
 
     def type_text(self, locator, text):
         """Wait for an element, clear it, and type the specified text."""

@@ -13,7 +13,7 @@ __pycache__/
 .pytest_cache/
 report.html
 assets/
-screenshots/
+# screenshots/
 
 # Entornos de desarrollo / IDEs
 .vscode/
