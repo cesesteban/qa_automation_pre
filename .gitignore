@@ -1,0 +1,30 @@
+# Entornos virtuales
+venv/
+env/
+.env/
+
+# Archivos de cache de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Pytest y reportes
+.pytest_cache/
+report.html
+assets/
+screenshots/
+
+# Entornos de desarrollo / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Webdriver manager (por si acaso se descarga localmente)
+.wdm/
+.gecko/
+
+# OS
+.DS_Store
+Thumbs.db
