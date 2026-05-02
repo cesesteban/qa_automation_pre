@@ -10,7 +10,6 @@ class InventoryPage(BasePage):
     PRODUCT_ITEMS = (By.CLASS_NAME, "inventory_item")
     FIRST_PRODUCT_NAME = (By.CSS_SELECTOR, ".inventory_item:first-child .inventory_item_name")
     FIRST_PRODUCT_PRICE = (By.CSS_SELECTOR, ".inventory_item:first-child .inventory_item_price")
-    HAMBURGER_MENU = (By.ID, "react-burger-menu-btn")
     SORT_FILTER = (By.CLASS_NAME, "product_sort_container")
     
     # Social Media Links
@@ -60,7 +59,7 @@ class InventoryPage(BasePage):
         return name, price
 
     def are_ui_elements_present(self):
-        return self.is_visible(self.HAMBURGER_MENU) and self.is_visible(self.SORT_FILTER)
+        return self.is_visible(self.HAMBURGER_MENU_BTN) and self.is_visible(self.SORT_FILTER)
 
     def get_social_link(self, platform):
         """Devuelve el atributo href del enlace de la red social especificada."""
