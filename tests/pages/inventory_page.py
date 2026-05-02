@@ -13,6 +13,11 @@ class InventoryPage(BasePage):
     HAMBURGER_MENU = (By.ID, "react-burger-menu-btn")
     SORT_FILTER = (By.CLASS_NAME, "product_sort_container")
     
+    # Social Media Links
+    TWITTER_LINK = (By.CSS_SELECTOR, ".social_twitter a")
+    FACEBOOK_LINK = (By.CSS_SELECTOR, ".social_facebook a")
+    LINKEDIN_LINK = (By.CSS_SELECTOR, ".social_linkedin a")
+    
     def __init__(self, driver):
         super().__init__(driver)
 
@@ -56,3 +61,22 @@ class InventoryPage(BasePage):
 
     def are_ui_elements_present(self):
         return self.is_visible(self.HAMBURGER_MENU) and self.is_visible(self.SORT_FILTER)
+
+    def get_social_link(self, platform):
+        """Devuelve el atributo href del enlace de la red social especificada."""
+        locators = {
+            "twitter": self.TWITTER_LINK,
+            "facebook": self.FACEBOOK_LINK,
+            "linkedin": self.LINKEDIN_LINK
+        }
+        element = self.find_element(locators[platform.lower()])
+        return element.get_attribute("href")
+
+    def click_social_link(self, platform):
+        """Hace clic en el enlace de la red social especificada."""
+        locators = {
+            "twitter": self.TWITTER_LINK,
+            "facebook": self.FACEBOOK_LINK,
+            "linkedin": self.LINKEDIN_LINK
+        }
+        self.click(locators[platform.lower()])
