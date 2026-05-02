@@ -6,6 +6,11 @@ class InventoryPage(BasePage):
     TITLE = (By.CSS_SELECTOR, "span.title")
     APP_LOGO = (By.CLASS_NAME, "app_logo")
     CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
+    PRODUCT_ITEMS = (By.CLASS_NAME, "inventory_item")
+    FIRST_PRODUCT_NAME = (By.CSS_SELECTOR, ".inventory_item:first-child .inventory_item_name")
+    FIRST_PRODUCT_PRICE = (By.CSS_SELECTOR, ".inventory_item:first-child .inventory_item_price")
+    HAMBURGER_MENU = (By.ID, "react-burger-menu-btn")
+    SORT_FILTER = (By.CLASS_NAME, "product_sort_container")
     
     def __init__(self, driver):
         super().__init__(driver)
@@ -31,3 +36,20 @@ class InventoryPage(BasePage):
         if self.is_visible(self.CART_BADGE):
             return int(self.get_text(self.CART_BADGE))
         return 0
+
+    def are_products_displayed(self):
+        # Usar find_elements para contar la cantidad de productos
+        from selenium.webdriver.support import expected_conditions as EC
+        try:
+            products = self.wait.until(EC.presence_of_all_elements_located(self.PRODUCT_ITEMS))
+            return len(products) > 0
+        except:
+            return False
+
+    def get_first_product_details(self):
+        name = self.get_text(self.FIRST_PRODUCT_NAME)
+        price = self.get_text(self.FIRST_PRODUCT_PRICE)
+        return name, price
+
+    def are_ui_elements_present(self):
+        return self.is_visible(self.HAMBURGER_MENU) and self.is_visible(self.SORT_FILTER)
